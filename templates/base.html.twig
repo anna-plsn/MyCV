@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>{% block title %}CV Anna Plaksina{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+            <!-- Font Awesome icons (free version)-->
+            <link href="assets/css/fonts.css" rel="stylesheet" />
+            <link href="assets/css/mili.css" rel="stylesheet" />
+            <!-- Core theme CSS (includes Bootstrap)-->
+            <link href="assets/css/styles.css" rel="stylesheet"/>
+        {% endblock %}
+
+        {% block javascripts %}
+            <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+            <!-- Bootstrap core JS-->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+            <!-- Third party plugin JS-->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+            <!-- Core theme JS-->
+            <script src="assets/js/scripts.js"></script>
+            <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+            <script type="text/javascript">
+                function sendEmail(){
+                    var name = $("#name");
+                    var email = $("#email");
+                    var message = $("#message");
+
+                    if(isNotEmpty(name) && isNotEmpty(email) && isNotEmpty(message)){
+                        $.ajax({
+                            url: 'sendEmail.php',
+                            method: 'POST',
+                            dataType: 'json',
+                            data:{
+                                name: name.val(),
+                                email: email.val(),
+                                message: message.val()
+                            },
+                            success: function (response){
+                                $('#myForm')[0].reset();
+                                $('.sent-notification').text("Message sent successfully!");
+                            }
+                        });
+                    }
+                }
+                function isNotEmpty(caller){
+                    if(caller.val()==""){
+                        caller.css('border', '1px solid red');
+                        return false;
+                    }
+                    else {
+                        caller.css('border', '');
+                        return  true;
+                    }
+                }
+            </script>
+        {% endblock %}
+    </head>
+    <body id="page-top">
+        {% block body %}
+            <!-- Navigation-->
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+                <a class="navbar-brand js-scroll-trigger" href="#page-top">
+                    <span class="d-block d-lg-none">Plaksina Anna</span>
+                    <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/img/profile.jpg" alt="" /></span>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">Experience</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#education">Education</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">Skills</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#interests">Interests</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#feedback">Feedback</a></li>
+                        <br>
+                        <li class="nav-item"><form action="/pdf"><button type="submit" class="btn btn-danger">Download PDF CV</button></form></li>
+                    </ul>
+                </div>
+            </nav>
+            <!-- Page Content-->
+            <div class="container-fluid p-0">
+                <!-- About-->
+                <section class="resume-section" id="about">
+                    <div class="resume-section-content">
+                        <h1 class="mb-0">
+                            Plaksina
+                            <span class="text-primary">Anna</span>
+                        </h1>
+                        <div class="subheading mb-5">
+                             Moscow · 8 (961) 06 05 476 ·
+                            <span class="text-primary">anneta.plaksina@YANDEX.RU</span>
+                        </div>
+                        <p class="lead mb-5">Я начинающий backend-разработчик, мои цели на ближайшее время - изучить основные высокоуровневые языки программирования, и с их помощью получить опыт работы в командном проекте. Меня вдохновляет написание кода, как из, казалось бы, простых логических операций создаются многофункциональные приложения. Может быть, у меня не так много практики, но я человек, с которым вам захочется познакомиться и поработать.</p>
+                        <div class="social-icons">
+                            <a class="social-icon" href="https://vk.com/belish_pm"><i class="fab fa-vk"></i></a>
+                            <a class="social-icon" href="https://github.com/anna-plsn"><i class="fab fa-github"></i></a>
+                            <a class="social-icon" href="https://t.me/anna_pls"><i class="fab fa-telegram"></i></a>
+                        </div>
+                    </div>
+                </section>
+                <hr class="m-0" />
+                <!-- Experience-->
+                <section class="resume-section" id="experience">
+                    <div class="resume-section-content">
+                        <h2 class="mb-5">Experience</h2>
+                        <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                            <div class="flex-grow-1">
+                                <h3 class="mb-0">Rating AndroidApp</h3>
+                                <div class="subheading mb-3">Android-developer</div>
+                                <p>Разработка Android приложения для устройства. Работа с базой данных MySQL. Эксперемент с исполнением blockchain на языке программирования Golang</p>
+                            </div>
+                            <div class="flex-shrink-0"><span class="text-primary">Сентябрь 2019 - Август 2020</span></div>
+                        </div>
+                        <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                            <div class="flex-grow-1">
+                                <h3 class="mb-0">Cafe Web Java</h3>
+                                <div class="subheading mb-3">Java-developer</div>
+                                <p>Работа с Java Servlet, базой данных MySQL, библиотекой FreeMarker. Реализован динамический каталог с отправкой в БД, регистрация пользователей, работа с сессиями для пользователей и администратора.</p>
+                            </div>
+                            <div class="flex-shrink-0"><span class="text-primary">Ноябрь 2020 - Декабрь 2020</span></div>
+                        </div>
+                        <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                            <div class="flex-grow-1">
+                                <h3 class="mb-0">Web Резюме на PHP</h3>
+                                <div class="subheading mb-3">PHP-developer</div>
+                                <p>Использование фреймворка Symfony для загрузки pdf-файлов. Работа с PHPMailer. Применение шаблонизатора Twig.</p>
+                            </div>
+                            <div class="flex-shrink-0"><span class="text-primary">Январь 2021- Н.В.</span></div>
+                        </div>
+                    </div>
+                </section>
+                <hr class="m-0" />
+                <!-- Education-->
+                <section class="resume-section" id="education">
+                    <div class="resume-section-content">
+                        <h2 class="mb-5">Education</h2>
+                        <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                            <div class="flex-grow-1">
+                                <h3 class="mb-0">МОУ Лицей №2 г. Волгоград</h3>
+                                <div class="subheading mb-3">Углубленное изучение математики</div>
+                                <p>Средний балл: 5.0</p>
+                            </div>
+                            <div class="flex-shrink-0"><span class="text-primary">Сентябрь 2008 - Май 2019</span></div>
+                        </div>
+                        <div class="d-flex flex-column flex-md-row justify-content-between">
+                            <div class="flex-grow-1">
+                                <h3 class="mb-0">РГУ Нефти и газа им. И. М. Губкина</h3>
+                                <div class="subheading mb-3">Информационно-аналитические системы безопасности.</div>
+                                <p>Средний балл: 4.9</p>
+                            </div>
+                            <div class="flex-shrink-0"><span class="text-primary">Сентябрь 2019 - Н.В.</span></div>
+                        </div>
+                    </div>
+                </section>
+                <hr class="m-0" />
+                <!-- Skills-->
+                <section class="resume-section" id="skills">
+                    <div class="resume-section-content">
+                        <h2 class="mb-5">Skills</h2>
+                        <div class="subheading mb-3">Programming Languages & Tools</div>
+                        <ul class="list-inline dev-icons">
+                            <li class="list-inline-item">
+                                <h4>HTML</h4>
+                                <i class="fab fa-html5"></i>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </li>
+                            <li class="list-inline-item">
+                                <h4>Java</h4>
+                                <i class="fab fa-java"></i>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+
+                            </li>
+                            <li class="list-inline-item">
+                                <h4>Python</h4>
+                                <i class="fab fa-python"></i>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </li>
+                            <li class="list-inline-item">
+                                <h4>SQL</h4>
+                                <i class="fas fa-database"></i>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </li>
+                            <li class="list-inline-item">
+                                <h4>CSS</h4>
+                                <i class="fab fa-css3-alt"></i>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </li>
+                            <li class="list-inline-item">
+                                <h4>terminal</h4>
+                                <i class="fas fa-terminal"></i>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </li>
+                            <li class="list-inline-item">
+                                <h4>Php</h4>
+                                <i class="fab fa-php"></i>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </li>
+                            <li class="list-inline-item"><h3>Bash</h3>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </li>
+                            <li class="list-inline-item"><h3>C#</h3>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </li>
+                            <li class="list-inline-item"><h3>C++</h3>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </li>
+                            <li class="list-inline-item"><h3>Golang</h3>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </li>
+
+                        </ul>
+
+                        <div class="subheading mb-3">Software</div>
+                        <ul class="list-inline dev-icons">
+                            <li class="list-inline-item">
+                                <h4>docker</h4>
+                                <i class="fab fa-docker"></i>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </li>
+                            <li class="list-inline-item">
+                                <h4>Git</h4>
+                                <i class="fab fa-github"></i>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                        </ul>
+
+                        <div class="subheading mb-3">Operating system</div>
+                        <ul class="list-inline dev-icons">
+                            <li class="list-inline-item">
+                                <h4>linux</h4>
+                                <i class="fab fa-linux"></i>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </li>
+                            <li class="list-inline-item">
+                                <h4>windows</h4>
+                                <i class="fab fa-windows"></i>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                        </ul>
+                        </div>
+                </section>
+                <hr class="m-0" />
+                <!-- Interests-->
+                <section class="resume-section" id="interests">
+                    <div class="resume-section-content">
+                        <h2 class="mb-5">Interests</h2>
+                        <p>В 2019 году окончила школу с золотой медалью. С самого начала обучения в вузе занималась научной деятельностью и программированием. Подготовка статьи на конференцию REDs 2020 на тему “Фишинговые атаки”. Изучение искусственного интеллекта на языке Python. В это же время увлечение игрой CTF, обучение в МГТУ им. Баумана основам CTF, участие в соревновании по информационной безопасности Ugra CTF. Прохождение различных курсов на обучающих платформах в сфере программирования.</p>
+                        <p class="mb-0">Свое свободное время посвящаю самообразованию. Учусь играть в шахматы, изучаю основы теории проведения дебатов и майндмэппинга</p>
+                    </div>
+                </section>
+                <hr class="m-0" />
+                <!--Feedback-->
+                <section class="resume-section" id="feedback">
+                    <div class="resume-section-content">
+                        <h2 class="mb-5">Feedback</h2>
+                        <ul class="fa-ul mb-0">
+                            <h4 class="sent-notification"></h4>
+                            <form id="myForm">
+                                <div class="form-group">
+                                    <label>Your name</label>
+                                    <input type="text" class="form-control" id="name" placeholder="Ivan Popov">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Your email</label>
+                                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="ivan@ivan.ru">
+                                </div>
+                                <div class="form-group">
+                                    <label>Enter your message</label>
+                                    <textarea class="form-control" id="message" rows="3" placeholder="Here you can send message to me! Ask anything"></textarea>
+                                </div>
+                                <button type="button" onclick="sendEmail()" class="btn btn-primary">Send</button>
+                            </form>
+
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        {% endblock %}
+    </body>
+</html>
